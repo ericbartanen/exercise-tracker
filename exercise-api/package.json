@@ -1,0 +1,20 @@
+{
+  "name": "exercise-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "exercise_controller.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon exercise_controller.mjs --ignore client"
+  },
+  "author": "Eric Bartanen",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
+    "express-validator": "^6.14.2",
+    "mongoose": "^6.7.4",
+    "nodemon": "^2.0.20"
+  }
+}
