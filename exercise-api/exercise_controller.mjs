@@ -43,7 +43,7 @@ app.post(
 });
 
 // READ all exercises
-app.get('/exercises', (req, res) => {
+app.get('https://exercise-tracker-js21.onrender.com/exercises', (req, res) => {
     exercises.findExercises()
         .then(exercises => {
             res.send(exercises);
