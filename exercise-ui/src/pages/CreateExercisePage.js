@@ -13,7 +13,7 @@ export const CreateExercisePage = () => {
     
     const createExercise = async () => {
         const newExercise = {name, reps, weight, unit, date};
-        const response = await fetch(`/exercises/`, {
+        const response = await fetch(`https://exercise-tracker-js21.onrender.com/exercises/`, {
             method: 'POST',
             body: JSON.stringify(newExercise),
             headers: {
