@@ -13,7 +13,7 @@ export const CreateExercisePage = () => {
     
     const createExercise = async () => {
         const newExercise = {name, reps, weight, unit, date};
-        const response = await fetch(`https://exercise-tracker-js21.onrender.com/exercises/`, {
+        const response = await fetch(`/exercises`, {
             method: 'POST',
             body: JSON.stringify(newExercise),
             headers: {
@@ -30,19 +30,26 @@ export const CreateExercisePage = () => {
 
     return (
         <div>
-            <h2>Create Exercise</h2>
+            <h2>New PR</h2>
             <div className='input-form'>
+                <label for='exercise'>Exercise Name:</label>
                 <input
+                    id='exercise'
                     placeholder='Exercise Name'
                     type="text"
                     value={name}
                     onChange={e => setName(e.target.value)} />
+                <br />
+                <label for='reps'>Number of Reps:</label>
                 <input
+                    id='reps'
                     placeholder='Number of Reps'
                     type="number"
                     value={reps}
                     onChange={e => setReps(e.target.value)} />
+                <label for='weight'>Weight:</label>
                 <input
+                    id='weight'
                     placeholder='Weight'
                     type="number"
                     value={weight}

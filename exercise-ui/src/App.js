@@ -16,8 +16,8 @@ function App() {
       <Router>
 
         <header>
-          <h1>Exercise Tracker</h1>
-          <p>Find your completed exercises below. You can add more exercises as well as edit and delete existing exercises.</p>
+          <h1>Exercise PR Tracker &#128170;</h1>
+          <p>Find your personal records below and add new ones!</p>
           <Navigation />
         </header>
 

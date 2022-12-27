@@ -10,7 +10,7 @@ function HomePage( { setExerciseToEdit } ) {
     const navigate = useNavigate();
 
     const onDelete = async _id => {
-        const response = await fetch(`https://exercise-tracker-js21.onrender.com/exercises/${_id}`, {method: 'DELETE'});  
+        const response = await fetch(`/exercises/${_id}`, {method: 'DELETE'});  
         if (response.status === 204) {
             const newExercises = exercises.filter(exercise => exercise._id !== _id)
             setExercises(newExercises)
@@ -25,7 +25,7 @@ function HomePage( { setExerciseToEdit } ) {
     };
 
     const loadExercises = async () => {
-        const response = await fetch('https://exercise-tracker-js21.onrender.com/exercises');
+        const response = await fetch('/exercises');
         const exercises = await response.json();
         setExercises(exercises);
     };
@@ -36,7 +36,7 @@ function HomePage( { setExerciseToEdit } ) {
 
     return (
         <>
-            <h2> Your Exercises </h2>
+            <h2> Your PRs </h2>
             <ExerciseTable exercises={exercises} onDelete={onDelete} onEdit={onEdit}></ExerciseTable>
         </>
     );
