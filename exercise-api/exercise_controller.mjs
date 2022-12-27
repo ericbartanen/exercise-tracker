@@ -10,12 +10,7 @@ const PORT = process.env.PORT;
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 
-app.use(express.static(path.join(__dirname, 'build')));
-
-app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
 // CREATE new exercise
@@ -113,6 +108,11 @@ app.delete('/exercises/:_id', (req, res) => {
         .catch(error => {
             res.status(400).json({Error: 'Request Failed'});
         });
+});
+
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.listen(PORT, () => {
