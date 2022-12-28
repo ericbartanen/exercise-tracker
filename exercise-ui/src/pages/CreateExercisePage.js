@@ -39,7 +39,6 @@ export const CreateExercisePage = () => {
                     type="text"
                     value={name}
                     onChange={e => setName(e.target.value)} />
-                <br />
                 <label for='reps'>Number of Reps:</label>
                 <input
                     id='reps'
@@ -54,11 +53,14 @@ export const CreateExercisePage = () => {
                     type="number"
                     value={weight}
                     onChange={e => setWeight(e.target.value)} />
-                <select value={unit} onChange={e => setUnit(e.target.value)}>
+                <label for='units'>Units:</label>
+                <select id='units' value={unit} onChange={e => setUnit(e.target.value)}>
                     <option value="lbs">lbs</option>
                     <option value="kgs">kgs</option>
                 </select>
+                <label for='date'>Date:</label>
                 <input
+                    id='date'
                     placeholder='MM-DD-YY'
                     type="string"
                     value={date}
