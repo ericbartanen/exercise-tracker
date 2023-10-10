@@ -62,7 +62,7 @@ export const CreateExercisePage = () => {
                 <input
                     id='date'
                     placeholder='MM-DD-YY'
-                    type="string"
+                    type="date"
                     value={date}
                     onChange={e => setDate(e.target.value)} />
             </div>
