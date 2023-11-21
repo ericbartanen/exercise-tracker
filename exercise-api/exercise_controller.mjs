@@ -20,7 +20,7 @@ app.post(
     body('reps').isInt({min: 1}),
     body('weight').isInt({min: 1}),
     body('unit').isIn(['kgs', 'lbs']),
-    body('date').isDate({format: "MM-DD-YY", strictMode: true, delimiters: ["-"]}),
+    body('date').isDate({format: "YYYY-MM-DD", strictMode: true, delimiters: ["-"]}),
     (req, res) => {
 
     const errors = validationResult(req);
@@ -71,7 +71,7 @@ app.put(
     body('reps').isInt({min: 1}),
     body('weight').isInt({min: 1}),
     body('unit').isIn(['kgs', 'lbs']),
-    body('date').isDate({format: "MM-DD-YY", strictMode: true, delimiters: ["-"]}),
+    body('date').isDate({format: "YYYY-MM-DD", strictMode: true, delimiters: ["-"]}),
     (req, res) => {
 
     const errors = validationResult(req);
