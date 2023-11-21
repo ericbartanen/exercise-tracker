@@ -33,17 +33,14 @@ export const EditExercisePage = ( { exerciseToEdit } ) => {
             <h2>Edit Exercise</h2>
             <div className='input-form'>
                 <input
-                    placeholder='Exercise Name'
                     type="text"
                     value={name}
                     onChange={e => setName(e.target.value)} />
                 <input
-                    placeholder='Number of Reps'
                     type="number"
                     value={reps}
                     onChange={e => setReps(e.target.value)} />
                 <input
-                    placeholder='Weight'
                     type="number"
                     value={weight}
                     onChange={e => setWeight(e.target.value)} />
@@ -52,7 +49,6 @@ export const EditExercisePage = ( { exerciseToEdit } ) => {
                     <option value="lbs">lbs</option>
                 </select>
                 <input
-                    placeholder='MM-DD-YY'
                     type="string"
                     value={date}
                     onChange={e => setDate(e.target.value)} />

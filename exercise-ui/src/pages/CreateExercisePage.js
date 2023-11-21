@@ -22,10 +22,11 @@ export const CreateExercisePage = () => {
         });
         if (response.status === 201) {
             alert(`You successfully created ${name}`)
+            navigate("/");
         } else {
-            alert('Hmm, something went wrong. Please try again.')
+            alert('One of your entries is incorrect, please try again.')
+            navigate("/create-exercise");
         }
-        navigate("/");
     };
 
     return (
