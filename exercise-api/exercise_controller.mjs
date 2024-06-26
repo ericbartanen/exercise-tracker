@@ -10,8 +10,8 @@ const PORT = process.env.PORT;
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 
-// app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, '../exercise-ui/build')));
+app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, '../exercise-ui/build')));
 app.use(express.json());
 
 // CREATE new exercise
@@ -19,14 +19,14 @@ app.post(
     '/exercises', 
     body('name').isLength({min: 1}),
     body('reps').isInt({min: 1}),
-    body('weight').isInt({min: 1}),
+    body('weight').isInt({min: 0}),
     body('unit').isIn(['kgs', 'lbs']),
     body('date').isDate({format: "YYYY-MM-DD", strictMode: true, delimiters: ["-"]}),
     (req, res) => {
 
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(400).json({Error: "Invalid request"})
+        return res.status(400).json({Error: 'Invalid request', message: errors.message})
     }
 
     exercises.createExercise(req.body.name, req.body.reps, req.body.weight, req.body.unit, req.body.date)    
@@ -34,7 +34,7 @@ app.post(
             res.status(201).json(exercise);
         })
         .catch(error => {
-            res.status(400).json({Error: 'Request Failed'});
+            res.status(400).json({Error: 'Request Failed', message: error.message});
         });
 });
 
@@ -45,7 +45,7 @@ app.get('/exercises', (req, res) => {
             res.send(exercises);
         })
         .catch(error => {
-            res.status(400).json({Error: 'Request Failed'});
+            res.status(400).json({Error: 'Request Failed', message: error.message});
         });
 });
 
@@ -57,11 +57,11 @@ app.get('/exercises/:_id', (req, res) => {
             if (exercises !== null) {
                 res.json(exercises);  
             } else {
-                res.status(404).json({ Error: "Not found"});
+                res.status(404).json({ Error: 'Not found', message: errors.message});
             }
         })
         .catch(error => {
-            res.status(400).json({Error: 'Request Failed'});
+            res.status(400).json({Error: 'Request Failed', message: error.message});
         });
 });
 
@@ -70,14 +70,14 @@ app.put(
     '/exercises/:_id', 
     body('name').isLength({min: 1}),
     body('reps').isInt({min: 1}),
-    body('weight').isInt({min: 1}),
+    body('weight').isInt({min: 0}),
     body('unit').isIn(['kgs', 'lbs']),
     body('date').isDate({format: "YYYY-MM-DD", strictMode: true, delimiters: ["-"]}),
     (req, res) => {
 
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(400).json({Error: "Invalid request"})
+        return res.status(400).json({Error: 'Invalid request', message: errors.message})
     };
     
     const exerciseId = req.params._id;
@@ -87,11 +87,11 @@ app.put(
             if (result === 1) {
                 res.json({_id: exerciseId, name: req.body.name, reps: req.body.reps, weight: req.body.weight, unit: req.body.unit, date: req.body.date})
             } else {
-                res.status(404).json({ Error: "Not found"});
+                res.status(404).json({ Error: 'Not found', message: errors.message});
             }
         })
         .catch(error => {
-            res.status(400).json({Error: 'Request Failed'});
+            res.status(400).json({Error: 'Request Failed', message: error.message});
         });
 });
 
@@ -103,11 +103,11 @@ app.delete('/exercises/:_id', (req, res) => {
             if (result === 1) {
                 res.status(204).send();
             } else {
-                res.status(404).json({ Error: "Not found"});
+                res.status(404).json({ Error: 'Not found', message: errors.message});
             }
         })
         .catch(error => {
-            res.status(400).json({Error: 'Request Failed'});
+            res.status(400).json({Error: 'Request Failed', message: error.message});
         });
 });
 
