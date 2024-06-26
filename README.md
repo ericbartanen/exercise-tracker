@@ -6,5 +6,6 @@ Find a live version of the web app here: https://exercise-tracker-js21.onrender.
 ## To Do 
 - [x] Host and Deploy. 
 - [x] If form input is wrong, user should be returned to the form not homepage.
+- [ ] Improve submission confirmation/rejection. Use something other than the standard browser alert.
 
 
