@@ -10,8 +10,7 @@ const PORT = process.env.PORT;
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 
-app.use(express.static(path.join(__dirname, 'public')));
-// app.use(express.static(path.join(__dirname, '../exercise-ui/build')));
+app.use(express.static(path.join(__dirname, 'dist')));
 app.use(express.json());
 
 // CREATE new exercise
@@ -113,7 +112,7 @@ app.delete('/exercises/:_id', (req, res) => {
 
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../exercise-ui/build', 'index.html'));
+    res.sendFile(path.join(__dirname, '../exercise-ui/dist', 'index.html'));
 });
 
 app.listen(PORT, () => {
