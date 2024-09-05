@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const CreateExercisePage = () => {
 
@@ -10,6 +12,10 @@ export const CreateExercisePage = () => {
     const [date, setDate] = useState('');
 
     const navigate = useNavigate();
+
+    const showToastMessage = () => {
+        toast.success("PR Added!");
+    };
     
     const createExercise = async () => {
         const newExercise = {name, reps, weight, unit, date};
@@ -21,7 +27,8 @@ export const CreateExercisePage = () => {
             }
         });
         if (response.status === 201) {
-            alert(`You successfully created ${name}`)
+            showToastMessage();
+            // alert(`You successfully created ${name}`)
             navigate("/");
         } else {
             alert('One of your entries is incorrect, please try again.')
@@ -67,9 +74,8 @@ export const CreateExercisePage = () => {
                     value={date}
                     onChange={e => setDate(e.target.value)} />
             </div>
-            <button
-                onClick={createExercise}
-            >Save</button>
+            <button onClick={createExercise}>Save</button>
+            <ToastContainer />
         </div>
     );
 }

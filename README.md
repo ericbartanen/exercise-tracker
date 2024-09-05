@@ -7,6 +7,6 @@ Find a live version of the web app here: https://exercise-tracker-js21.onrender.
 - [x] Host and Deploy. 
 - [x] If form input is wrong, user should be returned to the form not homepage.
 - [ ] Use toastify (or similar) to improve confirmation/rejection notifications.
-- [ ] Migrate from create-react-app to Vite
+- [x] Migrate from create-react-app to Vite
 
 
