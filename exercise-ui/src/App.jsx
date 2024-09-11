@@ -28,7 +28,7 @@ function App() {
         </Routes>
     
         <footer>
-          A full-stack MERN demo &copy; 2022 Eric Bartanen
+          A full-stack MERN demo &copy; 2024 Eric Bartanen
         </footer>
 
       </Router>

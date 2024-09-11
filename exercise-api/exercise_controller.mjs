@@ -1,21 +1,22 @@
 import 'dotenv/config';
 import express from 'express';
 import path from 'path';
-import { dirname } from 'path';
+import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import { body, validationResult } from 'express-validator';
 import * as exercises from './exercise_model.mjs';
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8080;
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
+app.use(express.json());
 
 app.use(express.static(path.join(__dirname, 'dist')));
-app.use(express.json());
 
 // CREATE new exercise
 app.post(
-    '/exercises', 
+    '/api/exercises', 
     body('name').isLength({min: 1}),
     body('reps').isInt({min: 1}),
     body('weight').isInt({min: 0}),
@@ -38,7 +39,7 @@ app.post(
 });
 
 // READ all exercises
-app.get('/exercises', (req, res) => {
+app.get('/api/exercises', (req, res) => {
     exercises.findExercises()
         .then(exercises => {
             res.send(exercises);
@@ -49,7 +50,7 @@ app.get('/exercises', (req, res) => {
 });
 
 // READ one exercise by id
-app.get('/exercises/:_id', (req, res) => {
+app.get('/api/exercises/:_id', (req, res) => {
     const exerciseId = req.params._id;
     exercises.findExerciseById(exerciseId)
         .then(exercises => {
@@ -66,7 +67,7 @@ app.get('/exercises/:_id', (req, res) => {
 
 // UPDATE exercise by id
 app.put(
-    '/exercises/:_id', 
+    '/api/exercises/:_id', 
     body('name').isLength({min: 1}),
     body('reps').isInt({min: 1}),
     body('weight').isInt({min: 0}),
@@ -95,7 +96,7 @@ app.put(
 });
 
 // DELETE exercise by id
-app.delete('/exercises/:_id', (req, res) => {
+app.delete('/api/exercises/:_id', (req, res) => {
     const exerciseId = req.params._id;
     exercises.deleteExercise({_id: exerciseId})
         .then(result => {
@@ -110,9 +111,8 @@ app.delete('/exercises/:_id', (req, res) => {
         });
 });
 
-
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../exercise-ui/dist', 'index.html'));
+app.get("/", (req,res) => {
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'))
 });
 
 app.listen(PORT, () => {

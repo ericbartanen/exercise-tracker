@@ -19,7 +19,7 @@ export const CreateExercisePage = () => {
     
     const createExercise = async () => {
         const newExercise = {name, reps, weight, unit, date};
-        const response = await fetch(`/exercises`, {
+        const response = await fetch(`/api/exercises`, {
             method: 'POST',
             body: JSON.stringify(newExercise),
             headers: {

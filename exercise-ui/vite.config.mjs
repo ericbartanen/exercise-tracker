@@ -2,8 +2,15 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
+    loglevel: 'debug',
     base: '/',
     plugins: [react()],
+    resolve: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx']
+    },
+    build: {
+        manifest: true,
+    },
     esbuild: {
         loader: 'jsx',
         include: /src\/.*\.jsx?$/,
@@ -15,8 +22,8 @@ export default defineConfig({
         // this sets a default port to 8000  
         port: 8000,
         proxy: {
-          '/exercises': {
-              target: 'http://localhost:3000',
+          '/api/exercises': {
+              target: 'http://localhost:8080',
               changeOrigin: true,
           }
     },

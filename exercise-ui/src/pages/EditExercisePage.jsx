@@ -13,7 +13,7 @@ export const EditExercisePage = ( { exerciseToEdit } ) => {
 
     const editExercise = async () => {
         const editedExercise = {name, reps, weight, unit, date};
-        const response = await fetch(`/exercises/${exerciseToEdit._id}`, {
+        const response = await fetch(`/api/exercises/${exerciseToEdit._id}`, {
             method: 'PUT',
             body: JSON.stringify(editedExercise),
             headers: {
